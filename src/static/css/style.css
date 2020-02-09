@@ -1,0 +1,25 @@
+@font-face{
+    font-family: poppins;
+    src: url('Poppins-Regular.otf');
+    font-weight: bold;}
+    
+    body {font-family: poppins; color:black}
+    h1 {font-family: poppins; color: black}
+
+table {
+    font-family: poppins, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  

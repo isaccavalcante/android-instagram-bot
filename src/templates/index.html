@@ -1,0 +1,51 @@
+<!DOCTYPE html5>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <title>Instagram Bot</title>
+<body>
+
+<h1>🤖 Instagram Bot</h1>
+
+<h2>Devices</h2>
+
+<table>
+    <tr>
+      <th>Device ID</th>
+      <th>Model</th>
+    </tr>
+    
+    {% for item in devices %}
+    <tr>
+      {% for key,value in item.items() %}
+      <td> {{ key }} </td>
+      <td> {{ value }} </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+
+  </table>
+
+<h2>Features</h2>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Description</th>
+    <td> Run </td>
+  </tr>
+  <tr>
+    <td> Unfollow All </td>
+    <td> Unfollow all current following accounts</td>
+    <td> 
+      <form action="/run" method="post">
+        <input type="hidden" name="feature" value="unfollow_all" />
+        <button type="submit" value="Run">Run</button>
+     </form>  
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
