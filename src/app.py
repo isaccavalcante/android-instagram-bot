@@ -3,7 +3,7 @@ import adb
 import instagram
 import os, sys
 from pyfladesk import init_gui
-
+import threading
 
 if getattr(sys, 'frozen', False):
     template_folder = os.path.join(sys._MEIPASS, 'templates')
@@ -21,8 +21,9 @@ def index():
 @app.route('/run', methods=['POST'])
 def run():
     if request.form['feature'] == "unfollow_all":
-        instagram.unfollow_all()
-    return render_template('run.html', log=request.form)
+        t = threading.Thread(target=instagram.unfollow_all)
+        t.start()
+    return render_template('run.html', data=request.form)
 
 if __name__ == '__main__':
     #app.run(debug=True)
