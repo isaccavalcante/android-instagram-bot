@@ -1,3 +1,11 @@
+# python cache
 __pycache__
+
+# pyinstaller
+build
+dist
+app.spec
+
+# application files
 screen.csv
 screen.xml
