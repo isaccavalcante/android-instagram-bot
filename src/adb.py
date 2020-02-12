@@ -2,7 +2,7 @@ from subprocess import Popen, PIPE
 
 
 def run_cmd(cmd):
-	p = Popen([cmd], stdout=PIPE, shell=True)
+	p = Popen(cmd.split(), stdout=PIPE, shell=True)
 	out, err = p.communicate()
 	return out, err
 
