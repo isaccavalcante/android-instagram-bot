@@ -4,12 +4,7 @@ This project is an Android Instagram _bot_, using [uiautomator](https://github.c
 
 ## How to run
 
-First install [android debug bridge](https://developer.android.com/studio/command-line/adb):
-```sh
-sudo apt install adb -y 
-```
-
-Install the application dependencies using:
+First install the application dependencies using:
 ```sh
 python3 -m pip install -r requirements.txt
 ```
