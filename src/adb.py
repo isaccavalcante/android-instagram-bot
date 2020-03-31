@@ -8,7 +8,7 @@ def run_cmd(cmd):
     return out, err
 
 def get_devices():
-    adb_path = os.getcwd() + f"/adb_{platform.system()}"
+    adb_path = os.getcwd() + f"platform-tools/adb_{platform.system()}"
     out, err = run_cmd(f"{adb_path} devices -l")
     devices = []
     for line in out.decode().strip().split("\n"):

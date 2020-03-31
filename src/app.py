@@ -23,6 +23,9 @@ def run():
     if request.form['feature'] == "unfollow_all":
         t = threading.Thread(target=instagram.unfollow_all)
         t.start()
+    elif request.form['feature'] == "unfollow_unfollowers":
+        t = threading.Thread(target=instagram.unfollow_unfollowers)
+        t.start()  
     return render_template('run.html', data=request.form)
 
 if __name__ == '__main__':
