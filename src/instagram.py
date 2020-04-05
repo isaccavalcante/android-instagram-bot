@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import time
 import asyncio
 import os
+import random
 
 if not os.path.exists("skip.txt"):
     open("skip.txt", "a").close()
@@ -50,7 +51,7 @@ def pretend_normal_usage():
     d(descriptionContains="'s story at column")[1].drag.to(descriptionContains="'s story at column")
     d.press.back()
     d(descriptionContains="'s story at column")[1].click()
-    time.sleep(3)
+    time.sleep(random.randint(15, 30))
     d.press.back()
     #d(description="Image").swipe.up(steps=10)
     #time.sleep(5)
@@ -120,14 +121,17 @@ def unfollow_unfollowers():
         if d(text="Unfollow").exists:
             d(text="Unfollow").click()
     #d(text=f"Following").drag.to(textContains="Followers")
-    pretend_normal_usage()    
+    #pretend_normal_usage()    
 
-
+"""
 enter_instagram()
-
+count = 0
 try:
     while True:
         unfollow_unfollowers()
+        count += 1
+        print(f"[+] checked {count} profiles")
 except Exception as e:
     print("[-] An error ocurrend. Dumping screen.csv")
     dump()
+"""

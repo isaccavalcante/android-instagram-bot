@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import adb
-import instagram
+#import instagram
 import os, sys
 from pyfladesk import init_gui
 import threading
@@ -14,10 +14,11 @@ else:
 
 @app.route('/', methods=['GET'])
 def index():
-    devices = adb.get_devices()
-    print(devices)
+    devices = adb.get_devices_v2()
+#   print(devices)
     return render_template('index.html', devices=devices)
-
+    
+"""
 @app.route('/run', methods=['POST'])
 def run():
     if request.form['feature'] == "unfollow_all":
@@ -27,7 +28,7 @@ def run():
         t = threading.Thread(target=instagram.unfollow_unfollowers)
         t.start()  
     return render_template('run.html', data=request.form)
-
+"""
 if __name__ == '__main__':
     #app.run(debug=True)
-    init_gui(app, window_title="Instagram Bot", icon="static/favicon.ico")
+    init_gui(app, window_title="Botgram", icon="static/favicon.ico")

@@ -1,45 +1,47 @@
 <!DOCTYPE html5>
 <html>
   {% include 'header.html' %}
+
+<script src="{{ url_for('static', filename='js/loading.js') }}"></script>
 <body>
+<div id="page">
 
-<h2>Devices</h2>
+<h2>Dispositivos</h2>
 
-<table>
-    <tr>
-      <th>Device ID</th>
-      <th>Model</th>
-    </tr>
-    
-    {% for item in devices %}
-    <tr>
-      {% for key,value in item.items() %}
-      <td> {{ key }} </td>
-      <td> {{ value }} </td>
-      {% endfor %}
-    </tr>
-    {% endfor %}
+{{ devices }}
 
-  </table>
-
-<h2>Features</h2>
+<h2>Automações</h2>
 <table>
   <tr>
-    <th>Feature</th>
-    <th>Description</th>
-    <td> Run </td>
+    <th>ID</th>
+    <th>Descrição</th>
+    <th> </th>
   </tr>
   <tr>
-    <td> Unfollow All </td>
-    <td> Unfollow all current following accounts</td>
+    <td> 1 </td>
+    <td> Unfollow em todos os perfis que estou seguindo</td>
     <td> 
       <form action="/run" method="post">
         <input type="hidden" name="feature" value="unfollow_all" />
-        <button type="submit" value="Run">Run</button>
+        <button type="submit" value="Run">Executar </button>
+     </form>  
+    </td>
+  </tr>
+  <tr>
+    <td> 2 </td>
+    <td> Unfollow nos perfis que não me seguem de volta</td>
+    <td> 
+      <form action="/run" method="post">
+        <input type="hidden" name="feature" value="unfollow_unfollowers" />
+        <button type="submit" value="Run"> Executar </button>
      </form>  
     </td>
   </tr>
 </table>
 
 </body>
+
+</div>
+<div id="loading"></div>
 </html>
+

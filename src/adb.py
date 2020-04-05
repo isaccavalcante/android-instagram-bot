@@ -1,9 +1,16 @@
-from subprocess import Popen, PIPE
+from subprocess import call, Popen, PIPE
 import platform
 import os
 
+system = platform.system()
+adb_path = os.getcwd()
+if system == "Linux":
+    adb_path += "/platform-tools/adb_Linux"
+elif system == "Windows":
+    adb_path += "\\platform-tools\\adb.exe"
+
 def run_cmd(cmd):
-    p = Popen([cmd], stdout=PIPE, shell=True)
+    p = Popen([cmd], stdout=PIPE)
     out, err = p.communicate()
     return out, err
 
@@ -18,3 +25,26 @@ def get_devices():
         model = line.split()[4].replace("model:", "")
         devices.append({device_id:model})
     return devices
+
+
+def get_device_model(output):
+    try:
+        model = output.split()[7].replace("model:", "")
+        device = output.split()[8].replace("device:", "")
+        return f"{device} {model} ✅"
+    except Exception as e:
+        return "Dispositivo não conectado ❌"
+
+def get_devices_v2():
+    p =  Popen([adb_path, "devices", "-l"], stdout=PIPE)
+    out, err = p.communicate()
+    output =  out.decode().strip()
+    return get_device_model(output)
+
+def restart_adb():
+    p =  Popen([adb_path, "kill-server"], stdout=PIPE)
+    p.communicate()
+    p =  Popen([adb_path, "start-server"], stdout=PIPE)
+    p.communicate()
+
+restart_adb()
